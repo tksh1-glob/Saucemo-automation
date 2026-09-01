@@ -7,6 +7,13 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 
+    public InventoryPage login(String username, String password) {
+        type(usernameInput, username);
+        type(passwordInput, password);
+        click(loginButton);
+        return new InventoryPage(driver);
+    }
+
     private static final String URL = "https://www.saucedemo.com/";
 
     @FindBy(id = "user-name")
