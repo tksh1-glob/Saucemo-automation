@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SauceDemoSuite" verbose="1">
+    <test name="SauceDemoTests">
+        <classes>
+            <class name="com.testacademy.tests.PurchaseProductTest"/>
+            <class name="com.testacademy.tests.RemoveCartItemsTest"/>
+            <class name="com.testacademy.tests.LogoutTest"/>
+        </classes>
+    </test>
+</suite>

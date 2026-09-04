@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CheckoutCompletePage extends LoggedInBasePage {
-//a
+
     @FindBy(className = "complete-header")
     private WebElement completeHeader;
 
