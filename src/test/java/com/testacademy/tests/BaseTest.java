@@ -1,10 +1,14 @@
+package com.testacademy.tests;
 
 import com.testacademy.pages.InventoryPage;
 import com.testacademy.pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+
+import java.util.Map;
 
 public abstract class BaseTest {
 
@@ -16,8 +20,16 @@ public abstract class BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-notifications");
+        options.setExperimentalOption("prefs", Map.of(
+                "credentials_enable_service", false,
+                "profile.password_manager_leak_detection", false
+        ));
+
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
+
         LoginPage loginPage = new LoginPage(driver).open();
         inventoryPage = loginPage.login(VALID_USERNAME, VALID_PASSWORD);
     }
