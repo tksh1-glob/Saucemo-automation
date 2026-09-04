@@ -5,6 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+/**
+ * Page Object del primer paso del checkout: el formulario donde se
+ * piden nombre, apellido y código postal.
+ */
 public class CheckoutStepOnePage extends LoggedInBasePage {
 
     @FindBy(id = "first-name")
@@ -23,6 +27,7 @@ public class CheckoutStepOnePage extends LoggedInBasePage {
         super(driver);
     }
 
+    // Completa los datos personales y avanza al resumen de la compra (paso 2).
     public CheckoutStepTwoPage fillPersonalInformation(String firstName, String lastName, String postalCode) {
         type(firstNameInput, firstName);
         type(lastNameInput, lastName);

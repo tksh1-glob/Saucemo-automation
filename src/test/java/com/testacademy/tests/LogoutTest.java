@@ -4,6 +4,10 @@ import com.testacademy.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * Escenario 3: cerrar sesión y confirmar que la app redirige
+ * de vuelta a la pantalla de login.
+ */
 public class LogoutTest extends BaseTest {
 
     @Test(description = "Cierra sesión y valida el redireccionamiento al login")

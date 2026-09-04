@@ -10,6 +10,11 @@ import org.testng.annotations.BeforeMethod;
 
 import java.util.Map;
 
+/**
+ * Clase base de la que heredan todos los tests.
+ * Se encarga de la precondición común a los 3 escenarios: levantar el
+ * navegador y loguearse, para que cada test se enfoque solo en su propio flujo.
+ */
 public abstract class BaseTest {
 
     protected static final String VALID_USERNAME = "standard_user";
@@ -21,6 +26,8 @@ public abstract class BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
+        // Evita el popup de notificaciones y el aviso de "contraseña filtrada"
+        // de Chrome, que si tapa un elemento puede romper un click o un sendKeys.
         options.addArguments("--disable-notifications");
         options.setExperimentalOption("prefs", Map.of(
                 "credentials_enable_service", false,
@@ -34,6 +41,8 @@ public abstract class BaseTest {
         inventoryPage = loginPage.login(VALID_USERNAME, VALID_PASSWORD);
     }
 
+    // Se ejecuta después de cada test, incluso si falló, para no dejar
+    // procesos de Chrome abiertos entre una corrida y otra.
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         if (driver != null) {

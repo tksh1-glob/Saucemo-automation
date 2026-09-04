@@ -8,6 +8,9 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
+/**
+ * Page Object del carrito de compras.
+ */
 public class CartPage extends LoggedInBasePage {
 
     @FindBy(className = "cart_item")
@@ -24,6 +27,9 @@ public class CartPage extends LoggedInBasePage {
         return cartItems.isEmpty();
     }
 
+    // Elimina todos los productos del carrito, uno a la vez, hasta que la lista
+    // quede vacía. Como cartItems se re-consulta en cada acceso, el bucle
+    // termina solo apenas se remueve el último producto.
     public CartPage removeAllProducts() {
         while (!cartItems.isEmpty()) {
             WebElement removeButton = cartItems.get(0).findElement(By.cssSelector("button.cart_button"));
